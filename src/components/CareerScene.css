@@ -1,0 +1,100 @@
+.career-scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.career-scene__particles {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.5;
+  animation: drift 18s linear infinite;
+}
+
+@keyframes drift {
+  from { background-position: 0 0; }
+  to { background-position: 140px 280px; }
+}
+
+/* Theme base backgrounds — translucent so the world map shows through */
+.career-scene--industrial { background: radial-gradient(circle at 30% 30%, rgba(26, 31, 44, 0.55), rgba(7, 8, 13, 0.45) 70%); }
+.career-scene--aerospace { background: radial-gradient(circle at 70% 20%, rgba(17, 32, 43, 0.55), rgba(7, 8, 13, 0.45) 70%); }
+.career-scene--journey { background: radial-gradient(circle at 50% 60%, rgba(22, 27, 46, 0.55), rgba(7, 8, 13, 0.45) 70%); }
+.career-scene--saas { background: radial-gradient(circle at 25% 75%, rgba(20, 32, 43, 0.55), rgba(7, 8, 13, 0.45) 70%); }
+.career-scene--ecommerce { background: radial-gradient(circle at 75% 75%, rgba(36, 23, 38, 0.55), rgba(7, 8, 13, 0.45) 70%); }
+.career-scene--government { background: radial-gradient(circle at 30% 70%, rgba(20, 36, 32, 0.55), rgba(7, 8, 13, 0.45) 70%); }
+.career-scene--hub { background: radial-gradient(circle at 50% 50%, rgba(28, 23, 51, 0.6), rgba(7, 8, 13, 0.45) 75%); }
+
+/* ---------- Journey (Moving to Portugal) ---------- */
+.route-path { position: relative; width: min(420px, 80vw); height: 220px; color: var(--color-accent-2); }
+.route-path svg { width: 100%; height: 100%; }
+.route-path svg path { stroke-dashoffset: 0; animation: dash 4s linear infinite; }
+@keyframes dash { to { stroke-dashoffset: -120; } }
+.route-dot {
+  position: absolute;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 20px;
+  background: rgba(90, 209, 230, 0.18);
+  border: 1px solid var(--color-accent);
+}
+.route-dot--start { left: 0; bottom: 8%; }
+.route-dot--end { right: 0; top: 8%; }
+.stars {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(2px 2px at 20% 30%, #fff, transparent),
+    radial-gradient(2px 2px at 70% 60%, #fff, transparent),
+    radial-gradient(1px 1px at 40% 80%, #fff, transparent),
+    radial-gradient(1px 1px at 85% 20%, #fff, transparent);
+  opacity: 0.5;
+}
+
+/* ---------- Hub (Front End Developer) ---------- */
+.hub-center {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
+  color: #06070b;
+  font-weight: 800;
+  font-size: 1.1rem;
+  box-shadow: 0 0 60px rgba(90, 209, 230, 0.4);
+  z-index: 2;
+}
+.hub-orbit {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: rgba(8, 10, 16, 0.7);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-text-dim);
+  animation: orbit 14s linear infinite;
+}
+.hub-orbit--1 { top: 14%; left: 50%; animation-duration: 12s; }
+.hub-orbit--2 { top: 50%; right: 12%; animation-duration: 16s; }
+.hub-orbit--3 { bottom: 12%; left: 50%; animation-duration: 18s; }
+.hub-orbit--4 { top: 50%; left: 12%; animation-duration: 20s; }
+@keyframes orbit {
+  from { transform: rotate(0deg) translateY(-130px) rotate(0deg); }
+  to { transform: rotate(360deg) translateY(-130px) rotate(-360deg); }
+}
+
+@media (max-width: 720px) {
+  .hub-orbit { display: none; }
+}

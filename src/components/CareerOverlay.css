@@ -1,0 +1,117 @@
+.career-overlay {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
+  max-height: calc(100% - 32px);
+  max-width: 620px;
+  background: rgba(13, 16, 24, 0.32);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: clamp(24px, 3.2vw, 38px);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.career-overlay__chapter,
+.career-overlay__role,
+.career-overlay__highlights li,
+.career-overlay__tech li {
+  opacity: 0;
+}
+
+.career-overlay__chapter {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 10px;
+}
+
+.career-overlay__title {
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.career-overlay__role {
+  font-size: 1.05rem;
+  color: var(--color-accent-2);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.career-overlay__description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--color-text-dim);
+  margin-bottom: 16px;
+}
+
+.career-overlay__highlights {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.career-overlay__highlights li {
+  font-size: 1rem;
+  color: var(--color-text);
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.45;
+}
+
+.career-overlay__highlights li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.career-overlay__tech {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.career-overlay__tech li {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: rgba(90, 209, 230, 0.12);
+  border: 1px solid rgba(90, 209, 230, 0.3);
+  color: var(--color-accent);
+}
+
+@media (max-width: 640px) {
+  .career-overlay {
+    left: 12px;
+    right: 12px;
+    top: auto;
+    bottom: 12px;
+    margin: 0;
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: 52vh;
+    overflow-y: auto;
+  }
+}
