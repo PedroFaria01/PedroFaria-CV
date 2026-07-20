@@ -1,16 +1,62 @@
-# React + Vite
+# Pedro Faria — Interactive Career Journey CV
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+An interactive, scroll/swipe-driven CV that walks through my career as a series of chapters on
+an animated map — from my first contact with programming during a Mechatronics degree to my
+current work as a Front End Developer.
 
-Currently, two official plugins are available:
+**Live site:** https://pedrofaria01.github.io/PedroFaria-CV/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Chapter-by-chapter career journey navigated by mouse wheel, touch swipe, keyboard arrows, or
+  the progress dots
+- Animated world/Portugal map background that highlights each chapter's location
+- "About" and "Contact" panels accessible from the header
+- Built with accessibility in mind: `aria-live` chapters, focus management on panels, keyboard
+  navigation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech stack
 
-## Expanding the Oxlint configuration
+- [React 19](https://react.dev/) + [Vite](https://vite.dev/)
+- [anime.js](https://animejs.com/) for scene/transition animations
+- [dotted-map](https://github.com/Guillecabo/dotted-map) for the generated map grids
+- [Oxlint](https://oxc.rs/) for linting
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Getting started
+
+```bash
+npm install
+npm run dev       # start the dev server
+npm run build     # production build to dist/
+npm run preview   # preview the production build locally
+npm run lint       # run Oxlint
+```
+
+## Project structure
+
+```
+src/
+  components/     # header, footer, map background, career scene/overlay, info panel, nav arrows
+  data/            # career chapters content and generated map grids
+  utils/           # animation helpers (anime.js)
+  scripts/         # one-off scripts to regenerate the map grid JSON (see below)
+```
+
+To regenerate the dotted map data after changing `scripts/gen-map.mjs` or
+`scripts/gen-portugal-map.mjs`:
+
+```bash
+node scripts/gen-map.mjs
+node scripts/gen-portugal-map.mjs
+```
+
+## Deployment
+
+The site is built and published to the `gh-pages` branch (classic branch-based GitHub Pages,
+no CI required), served at `https://pedrofaria01.github.io/PedroFaria-CV/`
+(see `base` in `vite.config.js`):
+
+```bash
+npm run build
+npx gh-pages -d dist
+```

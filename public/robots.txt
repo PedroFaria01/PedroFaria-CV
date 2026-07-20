@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pedrofaria01.github.io/PedroFaria-CV/sitemap.xml

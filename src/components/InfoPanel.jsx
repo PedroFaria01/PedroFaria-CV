@@ -2,6 +2,8 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import { animatePanelIn, animatePanelOut } from '../utils/animations.js';
 import './InfoPanel.css';
 
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xqerbdpw';
+
 function AboutContent() {
   return (
     <>
@@ -19,6 +21,97 @@ function AboutContent() {
         good design and good engineering reinforce each other.
       </p>
     </>
+  );
+}
+
+function ContactForm() {
+  const [fields, setFields] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState('idle');
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFields((current) => ({ ...current, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setStatus('submitting');
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(event.target),
+      });
+      if (response.ok) {
+        setStatus('success');
+        setFields({ name: '', email: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
+  };
+
+  if (status === 'success') {
+    return (
+      <p className="info-panel__form-status is-success" role="status">
+        Thanks! Your message was sent — I&apos;ll get back to you soon.
+      </p>
+    );
+  }
+
+  return (
+    <form className="info-panel__form" onSubmit={handleSubmit}>
+      <input type="text" name="_gotcha" tabIndex="-1" autoComplete="off" className="visually-hidden" />
+      <input type="hidden" name="_subject" value="New message from pedro-cv-journey" />
+
+      <div className="info-panel__field">
+        <label htmlFor="contact-name">Name</label>
+        <input
+          id="contact-name"
+          name="name"
+          type="text"
+          required
+          value={fields.name}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="info-panel__field">
+        <label htmlFor="contact-email">Email</label>
+        <input
+          id="contact-email"
+          name="email"
+          type="email"
+          required
+          value={fields.email}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="info-panel__field">
+        <label htmlFor="contact-message">Message</label>
+        <textarea
+          id="contact-message"
+          name="message"
+          rows="4"
+          required
+          value={fields.message}
+          onChange={handleChange}
+        />
+      </div>
+
+      <button type="submit" className="info-panel__submit" disabled={status === 'submitting'}>
+        {status === 'submitting' ? 'Sending…' : 'Send message'}
+      </button>
+
+      {status === 'error' && (
+        <p className="info-panel__form-status is-error" role="alert">
+          Something went wrong — please try again or email me directly.
+        </p>
+      )}
+    </form>
   );
 }
 
@@ -62,6 +155,9 @@ function ContactContent() {
           </dd>
         </div>
       </dl>
+
+      <p className="info-panel__form-intro">Or send a message directly:</p>
+      <ContactForm />
     </>
   );
 }
