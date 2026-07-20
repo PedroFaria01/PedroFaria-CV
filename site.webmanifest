@@ -1,0 +1,22 @@
+{
+  "name": "Pedro Faria — Front End Developer",
+  "short_name": "Pedro Faria",
+  "description": "Interactive career journey CV of Pedro Faria, Front End Developer.",
+  "start_url": "/PedroFaria-CV/",
+  "scope": "/PedroFaria-CV/",
+  "display": "standalone",
+  "background_color": "#07080d",
+  "theme_color": "#07080d",
+  "icons": [
+    {
+      "src": "/PedroFaria-CV/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/PedroFaria-CV/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
