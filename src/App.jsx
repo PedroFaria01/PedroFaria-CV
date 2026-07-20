@@ -6,6 +6,7 @@ import CareerOverlay from './components/CareerOverlay.jsx';
 import NavigationArrow from './components/NavigationArrow.jsx';
 import InfoPanel from './components/InfoPanel.jsx';
 import WorldMapBackground from './components/WorldMapBackground.jsx';
+import CookieConsentBanner from './components/CookieConsentBanner.jsx';
 import { careerStages } from './data/careerStages.js';
 import { animateProgressIn } from './utils/animations.js';
 import './App.css';
@@ -148,6 +149,7 @@ function App() {
 
   return (
     <div className="app-shell">
+      <CookieConsentBanner />
       <Header activePanel={activePanel} onNavigate={handleHeaderNav} />
 
       <main

@@ -4,13 +4,22 @@
     <meta charset="UTF-8" />
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C2EFDZ38ZW"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      // Default: no analytics/ad storage until the visitor consents via the
+      // cookie banner (src/components/CookieConsentBanner.jsx updates this).
+      gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        wait_for_update: 500,
+      });
       gtag('js', new Date());
       gtag('config', 'G-C2EFDZ38ZW');
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C2EFDZ38ZW"></script>
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
